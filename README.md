@@ -1,4 +1,4 @@
-## ✔ 1. Environment Setup
+##  1. Environment Setup
 
 Install required packages:
 
@@ -8,7 +8,7 @@ pip install pandas numpy matplotlib seaborn scikit-learn tensorflow statsmodels 
 
 ---
 
-## ✔ 2. Load the Dataset from OpenML
+##  2. Load the Dataset from OpenML
 
 ```python
 import openml
@@ -25,9 +25,9 @@ print(df.info())
 
 ---
 
-## ✔ 3. Data Preprocessing
+##  3. Data Preprocessing
 
-### 🧹 Handle Missing Values
+### Handling Missing Values
 
 ```python
 # Check missing values
@@ -39,16 +39,16 @@ df = df.fillna(df.median())
 
 ---
 
-## ✔ 4. Feature Engineering
+##  4. Feature Engineering
 
-### ⏱ Create a Datetime Column
+###  Create a Datetime Column
 
 ```python
 df['Date'] = pd.to_datetime(dict(year=1973, month=df['Month'], day=df['Day']))
 df = df.set_index('Date').sort_index()
 ```
 
-### 📊 Lag Features & Rolling Averages
+###  Lag Features & Rolling Averages
 
 ```python
 # Lag features
@@ -59,14 +59,14 @@ for lag in [1,3,7]:
 df['Ozone_ma7'] = df['Ozone'].rolling(window=7).mean()
 ```
 
-### 📅 Time Indicators
+### Time Indicators
 
 ```python
 df['Month'] = df.index.month
 df['DayOfYear'] = df.index.dayofyear
 ```
 
-### 🔁 Drop Rows After Feature Engineering
+###  Drop Rows After Feature Engineering
 
 ```python
 df = df.dropna()
@@ -74,7 +74,7 @@ df = df.dropna()
 
 ---
 
-## ✔ 5. Train–Test Split
+##  5. Train–Test Split
 
 ```python
 train_size = int(len(df)*0.8)
@@ -84,7 +84,7 @@ test = df[train_size:]
 
 ---
 
-## ✔ 6. Traditional Time Series Model – ARIMA
+##  6. Traditional Time Series Model – ARIMA
 
 ```python
 import statsmodels.api as sm
@@ -100,9 +100,9 @@ forecast = arima_fit.forecast(steps=len(test))
 
 ---
 
-## ✔ 7. Neural Network Model – LSTM (Deep Learning)
+## 7. Neural Network Model – LSTM (Deep Learning)
 
-### 🧠 Prepare Data for LSTM
+###  Prepare Data for LSTM
 
 ```python
 import numpy as np
@@ -124,7 +124,7 @@ X_train, X_test = X[:train_size-7], X[train_size-7:]
 y_train, y_test = y[:train_size-7], y[train_size-7:]
 ```
 
-### 🧱 Build LSTM
+###  Build LSTM
 
 ```python
 from tensorflow.keras.models import Sequential
@@ -139,7 +139,7 @@ model.compile(optimizer='adam', loss='mae')
 history = model.fit(X_train, y_train, epochs=30, batch_size=16, validation_split=0.1)
 ```
 
-### 🔮 Predict
+###  Predict
 
 ```python
 y_pred_scaled = model.predict(X_test)
@@ -148,9 +148,9 @@ y_pred = scaler.inverse_transform(y_pred_scaled)
 
 ---
 
-## ✔ 8. Evaluation
+##  8. Evaluation
 
-### 📏 Metrics
+### Metrics
 
 ```python
 from sklearn.metrics import mean_squared_error, mean_absolute_error
@@ -169,7 +169,7 @@ print(f"LSTM RMSE={rmse_lstm}, MAE={mae_lstm}")
 
 ---
 
-## ✔ 9. Visualization
+##  9. Visualization
 
 ```python
 import matplotlib.pyplot as plt
@@ -187,7 +187,7 @@ plt.show()
 
 ---
 
-## ✔ 10. Interpretation of Results
+##  10. Interpretation of Results
 
 | Model     | Strengths                                          | Weaknesses                        |
 | --------- | -------------------------------------------------- | --------------------------------- |
@@ -196,7 +196,7 @@ plt.show()
 
 ---
 
-## 📌 Summary of Deliverables
+##  Summary of Deliverables
 
 ✔ Data cleaning: missing value handling
 ✔ Temporal indexing & aggregation (daily)
