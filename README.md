@@ -198,11 +198,17 @@ plt.show()
 
 ##  Summary of Deliverables
 
-✔ Data cleaning: missing value handling
-✔ Temporal indexing & aggregation (daily)
-✔ Feature engineering: lags, rolling means, time indicators
-✔ Train–test split
-✔ Two different models: ARIMA & LSTM
-✔ Evaluation metrics: RMSE & MAE
-✔ Visualization & interpretation
+ Data cleaning: missing value handling
+ 
+ Temporal indexing & aggregation (daily)
+ 
+ Feature engineering: lags, rolling means, time indicators
+ 
+ Train–test split
+ 
+ Two different models: ARIMA & LSTM
+ 
+ Evaluation metrics: RMSE & MAE
+ 
+ Visualization & interpretation
 
